@@ -6,7 +6,12 @@ public class SecretSantaCycles {
 	static StringTokenizer st;
 
   static int[] dp;
+  static boolean[] vis;
+  
   static int solve(ArrayList<Integer>[] adj, int idx) {
+    if (vis[idx]) return 0;
+    vis[idx] = true;
+    
     if (adj[idx].size() > 1 || adj[idx].size() == 0) return dp[idx] = 1;
 
     int val = adj[idx].get(0);
@@ -22,6 +27,7 @@ public class SecretSantaCycles {
     for (int i = 1; i <= n; i ++) adj[readInt()].add(i);
     
     dp = new int[n + 1];
+    vis = new boolean[n + 1];
     Arrays.fill(dp, -1);
 
     int max = 0;
